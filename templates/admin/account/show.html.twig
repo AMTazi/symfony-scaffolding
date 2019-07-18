@@ -1,0 +1,73 @@
+{% extends 'sub-layout/dashboard.html.twig' %}
+
+{% block title %} {{ app.user.name }} | {{ parent() }} {% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Hi {{ app.user.name }}!!</h1>
+                            </div>
+                            <form class="user mb-3" action="{{ path('admin_myaccount_update') }}" method="post">
+
+                                <input type="hidden" name="_method" value="PUT">
+
+                                <h2 class="h6">Account Information</h2>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-12 mb-3 mb-sm-0">
+                                        <input type="text" name="name" class="form-control form-control-user" id="exampleFirstName" placeholder="Name" value="{{ app.user.name }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="email" readonly class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" value="{{ app.user.email }}">
+                                </div>
+
+                                <div class="d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary btn-user float-right">
+                                        Update
+                                    </button>
+                                </div>
+
+                            </form>
+
+                            {{ include('admin/users/_password_form.html.twig') }}
+
+                            {#<form class="user" action="{{ path('admin_users_reset_password') }}" method="post">
+
+                                <h2 class="h6">Password reset</h2>
+
+
+                                <div class="form-group row">
+                                    <div class="col-sm-12 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password Confirmation">
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary btn-user float-right">
+                                        Reset
+                                    </button>
+                                </div>
+                            </form>#}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
